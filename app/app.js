@@ -1,7 +1,5 @@
 var config = require('../config');
 
-// console.log("config: ", config);
-
 import React, { Component } from 'react'
 import { Router, Route, Link, IndexRoute, hashHistory, browserHistory, DefaultRoute, IndexLink } from 'react-router'
 import Fetch from 'react-fetch'
@@ -26,6 +24,12 @@ class MyForm extends Component {
 		this.state = {value: ''};
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
+
+		// document.onkeydown = function(e) {
+		// 	e.preventDefault();
+		// 	var keyCode = e ? (e.which ? e.which : e.keyCode) : event.keyCode;
+	 //        if(keyCode == 13) this.handleSubmit;
+		// }
 	}
 
 	handleChange(e) {
@@ -39,7 +43,10 @@ class MyForm extends Component {
 	renderError(zip) {
 		var element = document.getElementById('error-msg');
 		var zip = zip.length > 1 ? zip : "(blank)";
+		var input = document.getElementById('text-field');
 
+		input.value = "";
+		this.state.value = "";
 		element.innerHTML = zip + " is not a valid zip code!";
 	}
 
@@ -56,17 +63,16 @@ class MyForm extends Component {
 
 	render() {
 		return (
-			<div>
-				<form onSubmit={this.handleSubmit}>
+			<div className="tile">
+				<form>
 					<input
 						type="text"
+						id="text-field"
 						value={this.state.value}
 						onChange={this.handleChange}
-						placeholder="Enter zip code" />
-					<input 
-						type="submit" 
-						value="Submit" />
+						placeholder="Enter zip" /><br />
 				</form>
+				<div id="submit" value="Submit" onClick={this.handleSubmit}>Submit</div>
 				<p id="error-msg"></p>
 			</div>
 		)
@@ -107,16 +113,9 @@ class WeatherService extends Component{
 class Weather extends Component {
 
   render() {
-	// if (this.props.weather) {
-		console.log("this.props: ", this.props);
-	// 	this.props.weather = this.props.weather[0];
-	// 	console.log("this.props: ", this.props);
-	// }
-  	// var testObj = this.props;
-  	// console.log("testObj: ", testObj);
-	    	// <p>Rain fall (last 3 hours): {this.props.rain && this.props.rain.3h}</p>
+	console.log("this.props: ", this.props);
     return (
-    	<div>
+    	<div className="tile">
 	    	<IndexLink activeClassName='active' to='/'>Search again</IndexLink>&nbsp;
 	    	<h3>Current weather conditions for {this.props.zip} ({this.props.name})</h3>
 	    	<p>Data collected at: {new Date(this.props.dt*1000).toTimeString()}</p>
@@ -138,7 +137,6 @@ class Weather extends Component {
 
 const Home = () => (
 	<div>
-		<h1>Weather!</h1>
 		<MyForm></MyForm>
 	</div>
 )
