@@ -5,7 +5,7 @@ Simple app built in react to get current weather conditions of a user input zip 
 
 
 ##Instructions for building
-`git clone`
-`npm install`
-`npm start`
+`git clone`<br>
+`npm install`<br>
+`npm start`<br>
 Browse to localhost:8000
