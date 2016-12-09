@@ -24,12 +24,6 @@ class MyForm extends Component {
 		this.state = {value: ''};
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
-
-		// document.onkeydown = function(e) {
-		// 	e.preventDefault();
-		// 	var keyCode = e ? (e.which ? e.which : e.keyCode) : event.keyCode;
-	 //        if(keyCode == 13) this.handleSubmit;
-		// }
 	}
 
 	handleChange(e) {
@@ -72,7 +66,7 @@ class MyForm extends Component {
 						onChange={this.handleChange}
 						placeholder="Enter zip" /><br />
 				</form>
-				<div id="submit" value="Submit" onClick={this.handleSubmit}>Submit</div>
+				<button id="submit" value="Submit" onClick={this.handleSubmit}>Submit</button>
 				<p id="error-msg"></p>
 			</div>
 		)
